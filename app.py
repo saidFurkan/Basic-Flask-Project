@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-import priceVersus
+import getProductInfo
 
 app = Flask(__name__)
 
@@ -14,7 +14,7 @@ def search():
     sites = request.form.getlist("options")
     size = request.form.get("size")
 
-    result = priceVersus.search(searchKey=keyword, productSize = size, sites = sites)
+    result = getProductInfo.search(searchKey=keyword, productSize = size, sites = sites)
 
     # for i in result:
     #     for p in i:
