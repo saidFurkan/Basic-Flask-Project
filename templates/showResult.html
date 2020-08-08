@@ -1,0 +1,45 @@
+{% extends 'basepage.html' %}
+{% block body %}
+<div style="margin-top: 30px;" class="container">
+    <h2 style="text-align:center;">Search Result </h2>
+
+    <table  border padding=15px>
+        <thead ><tr>
+            {% for i in sites %}
+                {% if('0' in i) %}
+                    <th style="text-align:center;" width="33%" > HepsiBurada </th>
+                {% endif %}
+                {% if('1' in i) %}
+                    <th style="text-align:center;" width="33%" > N11 </th>
+                {% endif %}
+                {% if('2' in i) %}
+                    <th style="text-align:center;" width="33%" > GittiGidiyor </th>
+                {% endif %}
+                
+            {% endfor %}
+        </tr></thead>
+        {% for i in range(resultSize) %}
+            <tr>
+            {% for j in range(count) %}
+                <td>
+                <ul>
+                    <li> {{ result[j][i].name }} </li>
+                    <li> {{ result[j][i].price }} </li>
+                    <li><a href="{{ result[j][i].link }}" class="btn btn-danger" target="_blank">Link</a></li>
+                </ul>
+                </td> 
+            {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    <br><br>
+
+    <form action="/" >
+        <button type="submit" class="btn btn-danger"><- Back</button>
+    </form>
+    <br>
+
+</div>
+
+{% endblock %}
+

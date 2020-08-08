@@ -1,0 +1,60 @@
+{% extends 'basepage.html' %}
+{% block body %}
+
+    {% if message  %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert"></button>
+        {{ message }}
+    </div>
+    {% endif %}
+
+    <div style="margin-top: 50px;" class="container">
+    
+        <h1 style="padding-bottom: 4%;">Product Price Versus</h1>
+
+        <form name="form1" action="/search" method="POST" onsubmit="return check();">
+            <div class="form-group">
+
+                <label for="fkey"><strong>Keyword</strong></label>
+                <input type="text" name="title" class="form-control" id="titleId" placeholder="Enter the word you want to search" size="100" autofocus ><br><br>
+                
+                <p><strong>Sites you want to search</strong></p>
+                <input type="checkbox" name="options" id="option1" value='0' checked> HepsiBurada <br>
+                <input type="checkbox" name="options" id="option2" value='1' checked> N11 <br>
+                <input type="checkbox" name="options" id="option3" value='2' checked> GittiGidiyor <br><br><br>
+
+                <p><strong>How many products would you like to see from each site : </strong></p>
+                <select id="size" name="size">
+                    {% for i in range(1,6) %}
+                        {% if i == 3:%}selected
+                            <option value="{{i}}" selected>{{i}}</option>
+                        {% else %}
+                            <option value="{{i}}">{{i}}</option>
+                        {% endif %}
+                        
+                    {% endfor %}
+                </select><br><br>
+
+                <button type="submit" class="btn btn-danger">Search</button>
+            
+            </div>
+        </form>
+
+    </div>
+
+    <script>
+        function check(){
+            var form = document.forms["form1"];
+            var input = form["title"].value;
+            if(input == ""){
+                alert("Title field cannot be empty");
+                return false;
+            }
+            else if(input.length < 3 ){
+                alert("Enter at least 3 characters in the title field");
+                return false;
+            }
+            return true;
+        }
+    </script>
+{% endblock %}
